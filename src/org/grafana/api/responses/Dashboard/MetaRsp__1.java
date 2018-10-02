@@ -1,0 +1,59 @@
+
+package org.grafana.api.responses.Dashboard;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+public class MetaRsp__1 {
+
+    @SerializedName("isHome")
+    @Expose
+    private Boolean isHome;
+    @SerializedName("canSave")
+    @Expose
+    private Boolean canSave;
+    @SerializedName("canEdit")
+    @Expose
+    private Boolean canEdit;
+    @SerializedName("canStar")
+    @Expose
+    private Boolean canStar;
+    @SerializedName("url")
+    @Expose
+    private String url;
+    @SerializedName("expires")
+    @Expose
+    private String expires;
+    @SerializedName("created")
+    @Expose
+    private String created;
+
+    public Boolean getIsHome() {
+        return isHome;
+    }
+
+    public Boolean getCanSave() {
+        return canSave;
+    }
+
+    public Boolean getCanEdit() {
+        return canEdit;
+    }
+
+    public Boolean getCanStar() {
+        return canStar;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getExpires() {
+        return expires;
+    }
+
+    public String getCreated() {
+        return created;
+    }
+
+}
