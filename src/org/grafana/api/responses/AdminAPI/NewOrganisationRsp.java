@@ -4,6 +4,10 @@ package org.grafana.api.responses.AdminAPI;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ *
+ * @author jh
+ */
 public class NewOrganisationRsp {
 
     @SerializedName("orgId")
@@ -13,10 +17,18 @@ public class NewOrganisationRsp {
     @Expose
     private String message;
 
+    /**
+     *
+     * @return
+     */
     public String getOrgId() {
         return orgId;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getMessage() {
         return message;
     }

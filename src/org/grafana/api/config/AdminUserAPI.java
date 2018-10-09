@@ -4,6 +4,10 @@ package org.grafana.api.config;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ *
+ * @author jh
+ */
 public class AdminUserAPI {
 
     @SerializedName("Version")
@@ -17,91 +21,147 @@ public class AdminUserAPI {
     private String link;
     @SerializedName("UsersList")
     @Expose
-    private UsersList usersList;
+    private RequestParam usersList;
     @SerializedName("UserByID")
     @Expose
-    private UserByID userByID;
+    private RequestParam userByID;
     @SerializedName("UserByLoginEmail")
     @Expose
-    private UserByLoginEmail userByLoginEmail;
+    private RequestParam userByLoginEmail;
     @SerializedName("UserOrgsByID")
     @Expose
-    private UserOrgsByID userOrgsByID;
+    private RequestParam userOrgsByID;
     @SerializedName("CurrUserContext")
     @Expose
-    private CurrUserContext currUserContext;
+    private RequestParam currUserContext;
     @SerializedName("CreateUserConf")
     @Expose
-    private CreateUserConf createUserConf;
+    private RequestParam createUserConf;
     @SerializedName("SwitchUserOrgContext")
     @Expose
-    private SwitchUserOrgContext switchUserOrgContext;
+    private RequestParam switchUserOrgContext;
     @SerializedName("UpdateUser")
     @Expose
-    private UpdateUser updateUser;
+    private RequestParam updateUser;
     @SerializedName("SetPasswordByID")
     @Expose
-    private SetPasswordByID setPasswordByID;
+    private RequestParam setPasswordByID;
     @SerializedName("SetPermissionByID")
     @Expose
-    private SetPermissionByID setPermissionByID;
+    private RequestParam setPermissionByID;
     @SerializedName("DeleteByID")
     @Expose
-    private DeleteByID deleteByID;
+    private RequestParam deleteByID;
 
+    /**
+     *
+     * @return
+     */
     public String getVersion() {
         return version;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAuthentication() {
         return authentication;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getLink() {
         return link;
     }
 
-    public UsersList getUsersList() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getUsersList() {
         return usersList;
     }
 
-    public UserByID getUserByID() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getUserByID() {
         return userByID;
     }
 
-    public UserByLoginEmail getUserByLoginEmail() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getUserByLoginEmail() {
         return userByLoginEmail;
     }
 
-    public UserOrgsByID getUserOrgsByID() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getUserOrgsByID() {
         return userOrgsByID;
     }
 
-    public CurrUserContext getCurrUserContext() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getCurrUserContext() {
         return currUserContext;
     }
 
-    public CreateUserConf getCreateUserConf() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getCreateUserConf() {
         return createUserConf;
     }
 
-    public SwitchUserOrgContext getSwitchUserOrgContext() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getSwitchUserOrgContext() {
         return switchUserOrgContext;
     }
 
-    public UpdateUser getUpdateUser() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getUpdateUser() {
         return updateUser;
     }
 
-    public SetPasswordByID getSetPasswordByID() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getSetPasswordByID() {
         return setPasswordByID;
     }
 
-    public SetPermissionByID getSetPermissionByID() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getSetPermissionByID() {
         return setPermissionByID;
     }
 
-    public DeleteByID getDeleteByID() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getDeleteByID() {
         return deleteByID;
     }
 

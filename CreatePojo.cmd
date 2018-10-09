@@ -16,6 +16,6 @@
 
 @echo off
 
-java -jar "%~dp0/../lib/jsonschema2pojo-cli-1.0.0-alpha2.jar" -a GSON --disable-setters -S -E -s ".\Grafana-Java-API\src\config"    -t ".\Grafana-Java-API\src" -p org.grafana.api.config    -T JSON
+java -jar "%~dp0/../lib/jsonschema2pojo-cli-1.0.0-alpha2.jar" -a GSON --disable-setters -S -E -s ".\Grafana-Java-API\src\schema\config" -t ".\Grafana-Java-API\src" -p org.grafana.api.config -T JSONSCHEMA
 java -jar "%~dp0/../lib/jsonschema2pojo-cli-1.0.0-alpha2.jar" -a GSON --disable-setters -S -E -s ".\Grafana-Java-API\src\responses" -t ".\Grafana-Java-API\src" -p org.grafana.api.responses -T JSON --class-suffix "Rsp"
 java -jar "%~dp0/../lib/jsonschema2pojo-cli-1.0.0-alpha2.jar" -a GSON                   -S -E -s ".\Grafana-Java-API\src\templates" -t ".\Grafana-Java-API\src" -p org.grafana.api.templates -T JSON --class-suffix "Tpl"

@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 /**
+ * Base class to access all GrafanaAPI methodes
  *
  * @author Jonathan Hetzer at Schramm und Partner GmbH
  */

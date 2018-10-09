@@ -1,0 +1,23 @@
+{
+    "type": "object",
+    "properties": {
+        "Version": {
+            "type": "string"
+        },
+        "Authentication": {
+            "type": "string"
+        },
+        "Link": {
+            "type": "string"
+        },
+        "ApiKeyList": {
+            "$ref": "RequestParam.json"
+        },
+        "CreateApiKey": {
+            "$ref": "RequestParam.json"
+        },
+        "DeleteApiKeyByID": {
+            "$ref": "RequestParam.json"
+        }
+    }
+}

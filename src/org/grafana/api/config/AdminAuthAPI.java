@@ -4,6 +4,10 @@ package org.grafana.api.config;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ *
+ * @author jh
+ */
 public class AdminAuthAPI {
 
     @SerializedName("Version")
@@ -17,35 +21,59 @@ public class AdminAuthAPI {
     private String link;
     @SerializedName("ApiKeyList")
     @Expose
-    private ApiKeyList apiKeyList;
+    private RequestParam apiKeyList;
     @SerializedName("CreateApiKey")
     @Expose
-    private CreateApiKey createApiKey;
+    private RequestParam createApiKey;
     @SerializedName("DeleteApiKeyByID")
     @Expose
-    private DeleteApiKeyByID deleteApiKeyByID;
+    private RequestParam deleteApiKeyByID;
 
+    /**
+     *
+     * @return
+     */
     public String getVersion() {
         return version;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAuthentication() {
         return authentication;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getLink() {
         return link;
     }
 
-    public ApiKeyList getApiKeyList() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getApiKeyList() {
         return apiKeyList;
     }
 
-    public CreateApiKey getCreateApiKey() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getCreateApiKey() {
         return createApiKey;
     }
 
-    public DeleteApiKeyByID getDeleteApiKeyByID() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getDeleteApiKeyByID() {
         return deleteApiKeyByID;
     }
 

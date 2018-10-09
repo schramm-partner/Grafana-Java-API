@@ -7,7 +7,7 @@
     "SearchGrafana": {
         "Methode": "GET",
         "URL": "/api/search?",
-        "Parameters": {
+        "URLParameters": {
             "Query": "query=",
             "Tag": "tag=",
             "Type": "type=",

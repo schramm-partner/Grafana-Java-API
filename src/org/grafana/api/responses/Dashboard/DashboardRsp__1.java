@@ -6,6 +6,10 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ *
+ * @author jh
+ */
 public class DashboardRsp__1 {
 
     @SerializedName("id")
@@ -30,30 +34,58 @@ public class DashboardRsp__1 {
     @Expose
     private Integer version;
 
+    /**
+     *
+     * @return
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUid() {
         return uid;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<String> getTags() {
         return tags;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTimezone() {
         return timezone;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getSchemaVersion() {
         return schemaVersion;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getVersion() {
         return version;
     }

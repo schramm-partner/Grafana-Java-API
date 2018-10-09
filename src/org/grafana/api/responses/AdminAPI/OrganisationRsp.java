@@ -4,6 +4,10 @@ package org.grafana.api.responses.AdminAPI;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ *
+ * @author jh
+ */
 public class OrganisationRsp {
 
     @SerializedName("id")
@@ -16,14 +20,26 @@ public class OrganisationRsp {
     @Expose
     private AddressRsp address;
 
+    /**
+     *
+     * @return
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @return
+     */
     public AddressRsp getAddress() {
         return address;
     }

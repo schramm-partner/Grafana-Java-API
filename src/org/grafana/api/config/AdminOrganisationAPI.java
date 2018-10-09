@@ -4,6 +4,10 @@ package org.grafana.api.config;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ *
+ * @author jh
+ */
 public class AdminOrganisationAPI {
 
     @SerializedName("Version")
@@ -17,84 +21,136 @@ public class AdminOrganisationAPI {
     private String link;
     @SerializedName("OrgList")
     @Expose
-    private OrgList orgList;
+    private RequestParam orgList;
     @SerializedName("OrgByID")
     @Expose
-    private OrgByID orgByID;
+    private RequestParam orgByID;
     @SerializedName("OrgByName")
     @Expose
-    private OrgByName orgByName;
+    private RequestParam orgByName;
     @SerializedName("OrgUsersByID")
     @Expose
-    private OrgUsersByID orgUsersByID;
+    private RequestParam orgUsersByID;
     @SerializedName("CreateOrg")
     @Expose
-    private CreateOrg createOrg;
+    private RequestParam createOrg;
     @SerializedName("AddOrgUserByID")
     @Expose
-    private AddOrgUserByID addOrgUserByID;
+    private RequestParam addOrgUserByID;
     @SerializedName("UpdateOrgByID")
     @Expose
-    private UpdateOrgByID updateOrgByID;
+    private RequestParam updateOrgByID;
     @SerializedName("UpdateOrgUserByID")
     @Expose
-    private UpdateOrgUserByID updateOrgUserByID;
+    private RequestParam updateOrgUserByID;
     @SerializedName("DeleteOrgByID")
     @Expose
-    private DeleteOrgByID deleteOrgByID;
+    private RequestParam deleteOrgByID;
     @SerializedName("DeleteOrgUserByID")
     @Expose
-    private DeleteOrgUserByID deleteOrgUserByID;
+    private RequestParam deleteOrgUserByID;
 
+    /**
+     *
+     * @return
+     */
     public String getVersion() {
         return version;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAuthentication() {
         return authentication;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getLink() {
         return link;
     }
 
-    public OrgList getOrgList() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getOrgList() {
         return orgList;
     }
 
-    public OrgByID getOrgByID() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getOrgByID() {
         return orgByID;
     }
 
-    public OrgByName getOrgByName() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getOrgByName() {
         return orgByName;
     }
 
-    public OrgUsersByID getOrgUsersByID() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getOrgUsersByID() {
         return orgUsersByID;
     }
 
-    public CreateOrg getCreateOrg() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getCreateOrg() {
         return createOrg;
     }
 
-    public AddOrgUserByID getAddOrgUserByID() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getAddOrgUserByID() {
         return addOrgUserByID;
     }
 
-    public UpdateOrgByID getUpdateOrgByID() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getUpdateOrgByID() {
         return updateOrgByID;
     }
 
-    public UpdateOrgUserByID getUpdateOrgUserByID() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getUpdateOrgUserByID() {
         return updateOrgUserByID;
     }
 
-    public DeleteOrgByID getDeleteOrgByID() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getDeleteOrgByID() {
         return deleteOrgByID;
     }
 
-    public DeleteOrgUserByID getDeleteOrgUserByID() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getDeleteOrgUserByID() {
         return deleteOrgUserByID;
     }
 

@@ -4,6 +4,10 @@ package org.grafana.api.config;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ *
+ * @author jh
+ */
 public class CurrOrganisationAPI {
 
     @SerializedName("Version")
@@ -17,56 +21,92 @@ public class CurrOrganisationAPI {
     private String link;
     @SerializedName("CurrOrgList")
     @Expose
-    private CurrOrgList currOrgList;
+    private RequestParam currOrgList;
     @SerializedName("CurrOrgUsers")
     @Expose
-    private CurrOrgUsers currOrgUsers;
-    @SerializedName("UpdateCurrOrgUserByID")
-    @Expose
-    private UpdateCurrOrgUserByID updateCurrOrgUserByID;
+    private RequestParam currOrgUsers;
     @SerializedName("UpdateCurrOrg")
     @Expose
-    private UpdateCurrOrg updateCurrOrg;
+    private RequestParam updateCurrOrg;
+    @SerializedName("UpdateCurrOrgUserByID")
+    @Expose
+    private RequestParam updateCurrOrgUserByID;
     @SerializedName("AddOrgCurrUser")
     @Expose
-    private AddOrgCurrUser addOrgCurrUser;
+    private RequestParam addOrgCurrUser;
     @SerializedName("DeleteCurrOrgUserByID")
     @Expose
-    private DeleteCurrOrgUserByID deleteCurrOrgUserByID;
+    private RequestParam deleteCurrOrgUserByID;
 
+    /**
+     *
+     * @return
+     */
     public String getVersion() {
         return version;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAuthentication() {
         return authentication;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getLink() {
         return link;
     }
 
-    public CurrOrgList getCurrOrgList() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getCurrOrgList() {
         return currOrgList;
     }
 
-    public CurrOrgUsers getCurrOrgUsers() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getCurrOrgUsers() {
         return currOrgUsers;
     }
 
-    public UpdateCurrOrgUserByID getUpdateCurrOrgUserByID() {
-        return updateCurrOrgUserByID;
-    }
-
-    public UpdateCurrOrg getUpdateCurrOrg() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getUpdateCurrOrg() {
         return updateCurrOrg;
     }
 
-    public AddOrgCurrUser getAddOrgCurrUser() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getUpdateCurrOrgUserByID() {
+        return updateCurrOrgUserByID;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public RequestParam getAddOrgCurrUser() {
         return addOrgCurrUser;
     }
 
-    public DeleteCurrOrgUserByID getDeleteCurrOrgUserByID() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getDeleteCurrOrgUserByID() {
         return deleteCurrOrgUserByID;
     }
 

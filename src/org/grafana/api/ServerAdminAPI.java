@@ -7,22 +7,6 @@ package org.grafana.api;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import org.grafana.api.config.ApiKeyList;
-import org.grafana.api.config.CreateApiKey;
-import org.grafana.api.config.CreateOrg;
-import org.grafana.api.config.CreateUserConf;
-import org.grafana.api.config.CurrUserContext;
-import org.grafana.api.config.DeleteApiKeyByID;
-import org.grafana.api.config.OrgByID;
-import org.grafana.api.config.OrgByName;
-import org.grafana.api.config.OrgList;
-import org.grafana.api.config.OrgUsersByID;
-import org.grafana.api.config.SwitchUserOrgContext;
-import org.grafana.api.config.UserByID;
-import org.grafana.api.config.UserByLoginEmail;
-import org.grafana.api.config.UserOrgsByID;
-import org.grafana.api.config.UsersList;
 import org.grafana.api.responses.AdminAPI.ApiKeyRsp;
 import org.grafana.api.responses.AdminAPI.NewApiKeyRsp;
 import org.grafana.api.responses.AdminAPI.NewOrganisationRsp;
@@ -37,8 +21,10 @@ import org.grafana.api.templates.Organisation.CreateUpdateOrgTpl;
 import org.grafana.api.templates.User.CreateUserTpl;
 import java.util.Arrays;
 import java.util.LinkedList;
+import org.grafana.api.config.RequestParam;
 
 /**
+ * Methodes/Requests available form the Admin context (Base Auth)
  *
  * @author Jonathan Hetzer at Schramm und Partner GmbH
  */
@@ -46,6 +32,7 @@ public class ServerAdminAPI {
 
     private final GrafanaAPI grafanaAPI;
     private final Gson gson;
+    private final RequestBuilder requestBuilder;
 
     /**
      *
@@ -54,8 +41,9 @@ public class ServerAdminAPI {
     public ServerAdminAPI(GrafanaAPI grafanaAPI) {
         this.grafanaAPI = grafanaAPI;
         this.gson = new GsonBuilder().create();
+        this.requestBuilder = new RequestBuilder(grafanaAPI);
     }
-
+    
     /**
      * Get all Org of Grafana
      *
@@ -63,14 +51,8 @@ public class ServerAdminAPI {
      *
      */
     public LinkedList<OrganisationRsp> getOrgList() {
-        OrgList getOrgs = grafanaAPI.getConfiguration().getAdminOrganisationAPI().getOrgList();
-        JsonElement createServerRequest = grafanaAPI.getServerConnection().createServerRequest(
-                getOrgs.getURL().replace(" ", "%20"),
-                getOrgs.getMethode(),
-                grafanaAPI.getBasic()
-        );
-        return (new LinkedList(Arrays.asList(gson.fromJson(createServerRequest, OrganisationRsp[].class))));
-
+        RequestParam orgList = grafanaAPI.getConfiguration().getAdminOrganisationAPI().getOrgList();
+        return (new LinkedList(Arrays.asList(requestBuilder.setServerRequest(orgList, OrganisationRsp[].class))));
     }
 
     /**
@@ -81,15 +63,8 @@ public class ServerAdminAPI {
      *
      */
     public OrganisationRsp getOrgByID(String id) {
-        OrgByID getOrgByID = grafanaAPI.getConfiguration().getAdminOrganisationAPI().getOrgByID();
-
-        JsonElement createServerRequest = grafanaAPI.getServerConnection().createServerRequest(
-                getOrgByID.getURL().replace(getOrgByID.getParameter(), id).replace(" ", "%20"),
-                getOrgByID.getMethode(),
-                grafanaAPI.getBasic()
-        );
-        return (gson.fromJson(createServerRequest, OrganisationRsp.class));
-
+        RequestParam orgByID = grafanaAPI.getConfiguration().getAdminOrganisationAPI().getOrgByID();
+        return requestBuilder.setServerRequest(orgByID, id, OrganisationRsp.class);
     }
 
     /**
@@ -100,15 +75,8 @@ public class ServerAdminAPI {
      *
      */
     public OrganisationRsp getOrgByName(String name) {
-        OrgByName getOrgByName = grafanaAPI.getConfiguration().getAdminOrganisationAPI().getOrgByName();
-
-        JsonElement createServerRequest = grafanaAPI.getServerConnection().createServerRequest(
-                getOrgByName.getURL().replace(getOrgByName.getParameter(), name).replace(" ", "%20"),
-                getOrgByName.getMethode(),
-                grafanaAPI.getBasic()
-        );
-        return (gson.fromJson(createServerRequest, OrganisationRsp.class));
-
+        RequestParam orgByName = grafanaAPI.getConfiguration().getAdminOrganisationAPI().getOrgByName();
+        return  requestBuilder.setServerRequest(orgByName, name, OrganisationRsp.class);
     }
 
     /**
@@ -119,15 +87,8 @@ public class ServerAdminAPI {
      *
      */
     public LinkedList<OrganisationUsersRsp> getOrgUsersByID(String orgID) {
-        OrgUsersByID getOrgUsersByID = grafanaAPI.getConfiguration().getAdminOrganisationAPI().getOrgUsersByID();
-
-        JsonElement createServerRequest = grafanaAPI.getServerConnection().createServerRequest(
-                getOrgUsersByID.getURL().replace(getOrgUsersByID.getParameter(), orgID).replace(" ", "%20"),
-                getOrgUsersByID.getMethode(),
-                grafanaAPI.getBasic()
-        );
-        return (new LinkedList(Arrays.asList(gson.fromJson(createServerRequest, OrganisationUsersRsp[].class))));
-
+        RequestParam orgUsersByID = grafanaAPI.getConfiguration().getAdminOrganisationAPI().getOrgUsersByID();
+        return (new LinkedList(Arrays.asList(requestBuilder.setServerRequest(orgUsersByID, orgID, OrganisationUsersRsp[].class))));
     }
 
     /**
@@ -155,15 +116,8 @@ public class ServerAdminAPI {
      * @return
      */
     private NewOrganisationRsp createOrgExtented(String json) {
-        CreateOrg createOrg = grafanaAPI.getConfiguration().getAdminOrganisationAPI().getCreateOrg();
-        JsonElement createServerRequest = grafanaAPI.getServerConnection().createServerRequest(
-                createOrg.getURL().replace(" ", "%20"),
-                createOrg.getMethode(),
-                json,
-                grafanaAPI.getBasic()
-        );
-        return (gson.fromJson(createServerRequest, NewOrganisationRsp.class));
-
+        RequestParam createOrg = grafanaAPI.getConfiguration().getAdminOrganisationAPI().getCreateOrg();
+        return requestBuilder.setServerRequest(createOrg, NewOrganisationRsp.class, json);
     }
 
     /**
@@ -172,15 +126,8 @@ public class ServerAdminAPI {
      *
      */
     public LinkedList<UserRsp> getUsers() {
-        UsersList getUsers = grafanaAPI.getConfiguration().getAdminUserAPI().getUsersList();
-
-        JsonElement createServerRequest = grafanaAPI.getServerConnection().createServerRequest(
-                getUsers.getURL().replace(" ", "%20"),
-                getUsers.getMethode(),
-                grafanaAPI.getBasic()
-        );
-        return (new LinkedList(Arrays.asList(gson.fromJson(createServerRequest, UserRsp[].class))));
-
+        RequestParam usersList = grafanaAPI.getConfiguration().getAdminUserAPI().getUsersList();
+        return (new LinkedList(Arrays.asList(requestBuilder.setServerRequest(usersList, UserRsp[].class))));
     }
 
     /**
@@ -191,15 +138,8 @@ public class ServerAdminAPI {
      *
      */
     public UserRsp getUserByID(String userID) {
-        UserByID getUserByID = grafanaAPI.getConfiguration().getAdminUserAPI().getUserByID();
-
-        JsonElement createServerRequest = grafanaAPI.getServerConnection().createServerRequest(
-                getUserByID.getURL().replace(getUserByID.getParameter(), userID).replace(" ", "%20"),
-                getUserByID.getMethode(),
-                grafanaAPI.getBasic()
-        );
-        return (gson.fromJson(createServerRequest, UserRsp.class));
-
+        RequestParam userByID = grafanaAPI.getConfiguration().getAdminUserAPI().getUserByID();
+        return requestBuilder.setServerRequest(userByID, userID, UserRsp.class);
     }
 
     /**
@@ -209,15 +149,8 @@ public class ServerAdminAPI {
      * @return
      */
     public UserRsp getUserByLoginOrEmail(String loginOrEmail) {
-        UserByLoginEmail getUserByLoginEmail = grafanaAPI.getConfiguration().getAdminUserAPI().getUserByLoginEmail();
-
-        JsonElement createServerRequest = grafanaAPI.getServerConnection().createServerRequest(
-                getUserByLoginEmail.getURL().replace(getUserByLoginEmail.getParameter(), loginOrEmail).replace(" ", "%20"),
-                getUserByLoginEmail.getMethode(),
-                grafanaAPI.getBasic()
-        );
-        return (gson.fromJson(createServerRequest, UserRsp.class));
-
+        RequestParam userByLoginEmail = grafanaAPI.getConfiguration().getAdminUserAPI().getUserByLoginEmail();
+        return requestBuilder.setServerRequest(userByLoginEmail, loginOrEmail, UserRsp.class);
     }
 
     /**
@@ -228,15 +161,8 @@ public class ServerAdminAPI {
      *
      */
     public LinkedList<UserOrgsRsp> getUserOrgsByID(String userID) {
-        UserOrgsByID getUserOrgsByID = grafanaAPI.getConfiguration().getAdminUserAPI().getUserOrgsByID();
-
-        JsonElement createServerRequest = grafanaAPI.getServerConnection().createServerRequest(
-                getUserOrgsByID.getURL().replace(getUserOrgsByID.getParameter(), userID).replace(" ", "%20"),
-                getUserOrgsByID.getMethode(),
-                grafanaAPI.getBasic()
-        );
-        return (new LinkedList(Arrays.asList(gson.fromJson(createServerRequest, UserOrgsRsp[].class))));
-
+        RequestParam userOrgsByID = grafanaAPI.getConfiguration().getAdminUserAPI().getUserOrgsByID();
+        return (new LinkedList(Arrays.asList(requestBuilder.setServerRequest(userOrgsByID, userID, UserOrgsRsp[].class))));
     }
 
     /**
@@ -265,71 +191,59 @@ public class ServerAdminAPI {
      * @return
      */
     private NewUserRsp createUserExtented(String json) {
-        CreateUserConf createUserConf = grafanaAPI.getConfiguration().getAdminUserAPI().getCreateUserConf();
-
-        JsonElement createServerRequest = grafanaAPI.getServerConnection().createServerRequest(
-                createUserConf.getURL().replace(" ", "%20"),
-                createUserConf.getMethode(),
-                json,
-                grafanaAPI.getBasic()
-        );
-        return (gson.fromJson(createServerRequest, NewUserRsp.class));
-
+        RequestParam createUserConf = grafanaAPI.getConfiguration().getAdminUserAPI().getCreateUserConf();
+        return requestBuilder.setServerRequest(createUserConf, NewUserRsp.class, json);
     }
+
+    /**
+     *
+     * @return
+     */
     public UserRsp getCurrUserContext(){
-        CurrUserContext currUserContext = grafanaAPI.getConfiguration().getAdminUserAPI().getCurrUserContext();
-
-        JsonElement createServerRequest = grafanaAPI.getServerConnection().createServerRequest(
-                currUserContext.getURL().replace(" ", "%20"),
-                currUserContext.getMethode(),
-                grafanaAPI.getBasic()
-        );
-        return (gson.fromJson(createServerRequest, UserRsp.class));
-
+        RequestParam currUserContext = grafanaAPI.getConfiguration().getAdminUserAPI().getCurrUserContext();
+        return requestBuilder.setServerRequest(currUserContext, UserRsp.class);
     }
 
+    /**
+     *
+     * @param orgID
+     * @return
+     */
     public MessageRsp switchUserOrgContext(String orgID){
-        SwitchUserOrgContext switchUserOrgContext = grafanaAPI.getConfiguration().getAdminUserAPI().getSwitchUserOrgContext();
-
-        JsonElement createServerRequest = grafanaAPI.getServerConnection().createServerRequest(
-                switchUserOrgContext.getURL().replace(switchUserOrgContext.getParameter(), orgID).replace(" ", "%20"),
-                switchUserOrgContext.getMethode(),
-                grafanaAPI.getBasic()
-        );
-        return (gson.fromJson(createServerRequest, MessageRsp.class));
-
+        RequestParam switchUserOrgContext = grafanaAPI.getConfiguration().getAdminUserAPI().getSwitchUserOrgContext();
+        return requestBuilder.setServerRequest(switchUserOrgContext, orgID, MessageRsp.class);
     }
     
+    /**
+     *
+     * @return
+     */
     public LinkedList<ApiKeyRsp> getApiKeyList(){
-        ApiKeyList apiKeyList = grafanaAPI.getConfiguration().getAuthAPI().getApiKeyList();
-
-        JsonElement createServerRequest = grafanaAPI.getServerConnection().createServerRequest(
-                apiKeyList.getURL().replace(" ", "%20"),
-                apiKeyList.getMethode(),
-                grafanaAPI.getBasic()
-        );
-        return (new LinkedList(Arrays.asList(gson.fromJson(createServerRequest, ApiKeyRsp[].class))));
-
+        RequestParam apiKeyList = grafanaAPI.getConfiguration().getAuthAPI().getApiKeyList();
+        return (new LinkedList(Arrays.asList(requestBuilder.setServerRequest(apiKeyList, ApiKeyRsp[].class))));
     }
     
+    /**
+     *
+     * @param apiKeyObj
+     * @return
+     */
     public NewApiKeyRsp createApiKey(CreateApiKeyTpl apiKeyObj){
         return createApiKeyExtented(gson.toJson(apiKeyObj));
     }
     
+    /**
+     *
+     * @param json
+     * @return
+     */
     public NewApiKeyRsp createApiKey(String json){
         return createApiKeyExtented(json);
     }
     
     private NewApiKeyRsp createApiKeyExtented(String json){
-        CreateApiKey createApiKey = grafanaAPI.getConfiguration().getAuthAPI().getCreateApiKey();
-
-        JsonElement createServerRequest = grafanaAPI.getServerConnection().createServerRequest(
-                createApiKey.getURL().replace(" ", "%20"),
-                createApiKey.getMethode(),
-                json,
-                grafanaAPI.getBasic()
-        );
-        return (gson.fromJson(createServerRequest, NewApiKeyRsp.class));
+        RequestParam createApiKey = grafanaAPI.getConfiguration().getAuthAPI().getCreateApiKey();
+        return requestBuilder.setServerRequest(createApiKey, NewApiKeyRsp.class, json);
     }
     
     /**
@@ -340,16 +254,8 @@ public class ServerAdminAPI {
      * @return
      */
     public MessageRsp deleteApiKeyByID(String apiKeyID){
-        DeleteApiKeyByID deleteApiKeyByID = grafanaAPI.getConfiguration().getAuthAPI().getDeleteApiKeyByID();
-
-        JsonElement createServerRequest = grafanaAPI.getServerConnection().createServerRequest(
-                deleteApiKeyByID.getURL().replace(deleteApiKeyByID.getParameter(), apiKeyID).replace(" ", "%20"),
-                deleteApiKeyByID.getMethode(),
-                grafanaAPI.getBasic()
-        );
-        System.out.println(deleteApiKeyByID.getURL().replace(deleteApiKeyByID.getParameter(), apiKeyID).replace(" ", "%20"));
-        System.out.println(gson.toJson(createServerRequest));
-        return (gson.fromJson(createServerRequest, MessageRsp.class));
+        RequestParam deleteApiKeyByID = grafanaAPI.getConfiguration().getAuthAPI().getDeleteApiKeyByID();
+        return requestBuilder.setServerRequest(deleteApiKeyByID, apiKeyID, MessageRsp.class);
     }
     /*
      ToDO:

@@ -82,7 +82,7 @@ The Java Methodes are either stored in ServerAdminAPI.java or OrgAdminAPI.java. 
 ## Dashboard/Folder Search
 | Name | Json Description | Scope | Implemented |
 | ------------- | ------------- | ------------- | ------------- |
-| searchFolderDashboard()  | SearchGrafana| AdminAPI | CurrOrgAPI |
+| searchFolderDashboard()  | SearchGrafana| CurrOrgAPI | yes |
 
 ## Dashboard
 | Name | Json Description | Scope | Implemented |

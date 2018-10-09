@@ -4,6 +4,10 @@ package org.grafana.api.config;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ *
+ * @author jh
+ */
 public class Experimental {
 
     @SerializedName("Version")
@@ -17,21 +21,37 @@ public class Experimental {
     private String link;
     @SerializedName("CreateUserInvite")
     @Expose
-    private CreateUserInvite createUserInvite;
+    private RequestParam createUserInvite;
 
+    /**
+     *
+     * @return
+     */
     public String getVersion() {
         return version;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAuthentication() {
         return authentication;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getLink() {
         return link;
     }
 
-    public CreateUserInvite getCreateUserInvite() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getCreateUserInvite() {
         return createUserInvite;
     }
 

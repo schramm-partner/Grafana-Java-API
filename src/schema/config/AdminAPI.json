@@ -1,0 +1,14 @@
+{
+    "type": "object",
+    "properties": {
+        "Version": {
+            "type": "string"
+        },
+        "Authentication": {
+            "type": "string"
+        },
+        "Link": {
+            "type": "string"
+        }
+    }
+}

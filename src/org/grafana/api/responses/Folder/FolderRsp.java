@@ -4,6 +4,10 @@ package org.grafana.api.responses.Folder;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ *
+ * @author jh
+ */
 public class FolderRsp {
 
     @SerializedName("id")
@@ -46,54 +50,106 @@ public class FolderRsp {
     @Expose
     private Integer version;
 
+    /**
+     *
+     * @return
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUid() {
         return uid;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUrl() {
         return url;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getHasAcl() {
         return hasAcl;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getCanSave() {
         return canSave;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getCanEdit() {
         return canEdit;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getCanAdmin() {
         return canAdmin;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCreatedBy() {
         return createdBy;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCreated() {
         return created;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUpdatedBy() {
         return updatedBy;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUpdated() {
         return updated;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getVersion() {
         return version;
     }

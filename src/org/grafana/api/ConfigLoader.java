@@ -51,6 +51,24 @@ public class ConfigLoader {
     private final AdminAPI adminAPI;
     private final AdminAuthAPI authAPI;
     private final Experimental experimental;
+    
+    /**
+     * Load GrafanaAPI config from JSON Files
+     *
+     */
+    public ConfigLoader() {
+        this.gson = new GsonBuilder().create();
+        this.adminOrganisationAPI = gson.fromJson(getJsonElementFromPath(pathAdminOrganisationAPI), AdminOrganisationAPI.class);
+        this.adminUserAPI = gson.fromJson(getJsonElementFromPath(pathAdminUserAPI), AdminUserAPI.class);
+        this.currOrganisationAPI = gson.fromJson(getJsonElementFromPath(pathCurrOrganisationAPI), CurrOrganisationAPI.class);
+        this.dashboardAPI = gson.fromJson(getJsonElementFromPath(pathDashboardAPI), DashboardAPI.class);
+        this.folderAPI = gson.fromJson(getJsonElementFromPath(pathFolderAPI), FolderAPI.class);
+        this.folderDashboardSearchAPI = gson.fromJson(getJsonElementFromPath(pathFolderDashboardSearchAPI), FolderDashboardSearchAPI.class);
+        this.adminAPI = gson.fromJson(getJsonElementFromPath(pathAdminAPI), AdminAPI.class);
+        this.authAPI = gson.fromJson(getJsonElementFromPath(pathAuthAPI), AdminAuthAPI.class);
+        this.experimental = gson.fromJson(getJsonElementFromPath(pathExperimental), Experimental.class);
+        
+    }
 
     /**
      *
@@ -116,27 +134,14 @@ public class ConfigLoader {
         return authAPI;
     }
 
+    /**
+     *
+     * @return
+     */
     public Experimental getExperimental() {
         return experimental;
     }
     
-    /**
-     *
-     */
-    public ConfigLoader() {
-        this.gson = new GsonBuilder().create();
-        this.adminOrganisationAPI = gson.fromJson(getJsonElementFromPath(pathAdminOrganisationAPI), AdminOrganisationAPI.class);
-        this.adminUserAPI = gson.fromJson(getJsonElementFromPath(pathAdminUserAPI), AdminUserAPI.class);
-        this.currOrganisationAPI = gson.fromJson(getJsonElementFromPath(pathCurrOrganisationAPI), CurrOrganisationAPI.class);
-        this.dashboardAPI = gson.fromJson(getJsonElementFromPath(pathDashboardAPI), DashboardAPI.class);
-        this.folderAPI = gson.fromJson(getJsonElementFromPath(pathFolderAPI), FolderAPI.class);
-        this.folderDashboardSearchAPI = gson.fromJson(getJsonElementFromPath(pathFolderDashboardSearchAPI), FolderDashboardSearchAPI.class);
-        this.adminAPI = gson.fromJson(getJsonElementFromPath(pathAdminAPI), AdminAPI.class);
-        this.authAPI = gson.fromJson(getJsonElementFromPath(pathAuthAPI), AdminAuthAPI.class);
-        this.experimental = gson.fromJson(getJsonElementFromPath(pathExperimental), Experimental.class);
-        
-    }
-
     private JsonElement getJsonElementFromPath(String path){
         JsonElement jsonElement = null;
         try (Reader reader = new InputStreamReader(ConfigLoader.class.getResourceAsStream(path), "UTF-8"); 

@@ -4,6 +4,10 @@ package org.grafana.api.responses.AdminAPI;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ *
+ * @author jh
+ */
 public class NewApiKeyRsp {
 
     @SerializedName("name")
@@ -13,10 +17,18 @@ public class NewApiKeyRsp {
     @Expose
     private String key;
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getKey() {
         return key;
     }

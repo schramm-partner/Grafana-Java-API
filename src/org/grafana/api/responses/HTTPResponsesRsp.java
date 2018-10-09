@@ -4,6 +4,10 @@ package org.grafana.api.responses;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ *
+ * @author jh
+ */
 public class HTTPResponsesRsp {
 
     @SerializedName("200")
@@ -22,22 +26,42 @@ public class HTTPResponsesRsp {
     @Expose
     private String _412;
 
+    /**
+     *
+     * @return
+     */
     public String get200() {
         return _200;
     }
 
+    /**
+     *
+     * @return
+     */
     public String get400() {
         return _400;
     }
 
+    /**
+     *
+     * @return
+     */
     public String get401() {
         return _401;
     }
 
+    /**
+     *
+     * @return
+     */
     public String get403() {
         return _403;
     }
 
+    /**
+     *
+     * @return
+     */
     public String get412() {
         return _412;
     }

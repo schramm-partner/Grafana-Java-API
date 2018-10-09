@@ -4,6 +4,10 @@ package org.grafana.api.responses.AdminAPI;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ *
+ * @author jh
+ */
 public class UserRsp {
 
     @SerializedName("id")
@@ -28,30 +32,58 @@ public class UserRsp {
     @Expose
     private Boolean isGrafanaAdmin;
 
+    /**
+     *
+     * @return
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getLogin() {
         return login;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTheme() {
         return theme;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getOrgId() {
         return orgId;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getIsGrafanaAdmin() {
         return isGrafanaAdmin;
     }

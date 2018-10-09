@@ -6,6 +6,10 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ *
+ * @author jh
+ */
 public class DashboardRsp__2 {
 
     @SerializedName("editable")
@@ -39,42 +43,82 @@ public class DashboardRsp__2 {
     @Expose
     private Integer version;
 
+    /**
+     *
+     * @return
+     */
     public Boolean getEditable() {
         return editable;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getHideControls() {
         return hideControls;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<NavRsp> getNav() {
         return nav;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getStyle() {
         return style;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Object> getTags() {
         return tags;
     }
 
+    /**
+     *
+     * @return
+     */
     public TemplatingRsp getTemplating() {
         return templating;
     }
 
+    /**
+     *
+     * @return
+     */
     public TimeRsp getTime() {
         return time;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTimezone() {
         return timezone;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getVersion() {
         return version;
     }

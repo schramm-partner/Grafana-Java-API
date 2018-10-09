@@ -28,10 +28,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.grafana.api.config.RequestParam;
 import org.grafana.api.responses.SearchFolderDashboardRsp;
 import org.grafana.api.templates.Search.FolderDashboardTpl;
 
 /**
+ * A Collection of code snippets which show how to use this API
  *
  * @author Jonathan Hetzer at Schramm und Partner GmbH
  */
@@ -49,7 +51,7 @@ public class TestingAndExample {
         String grafanaServer = "http://10.100.100.140";
         
         /* Organisation Admin API Key */
-        String mainOrgApiKey = "Bearer eyJrIjoiT2VDRDNWN2RORzREdmNQdzlHTE9nRkZIendWTFJVN2MiLCJuIjoiQWRtaW5fS2V5IiwiaWQiOjF9";
+        String mainOrgApiKey = "Bearer eyJrIjoiRzFlZjZiVHlxNXZiNW5RbGNuM1BnTU5ZZklkV0lQMzEiLCJuIjoiVGVzdCBBUEkgS2V5IDIiLCJpZCI6MX0=";
         // Username: admin Password: admin
         String serverAdminKey = "Basic YWRtaW46YWRtaW4=";
 
@@ -57,31 +59,31 @@ public class TestingAndExample {
         
         /* List all Organisations of Grafana Admin Context */
         /*
-        grafanaAPI.serverAdminAPI(serverAdminKey).getOrgs().stream().forEach((OrganisationRsp item) -> {
+        grafanaAPI.serverAdminAPI(serverAdminKey).getOrgList().stream().forEach((OrganisationRsp item) -> {
             System.out.println(gsonPretty.toJson(item));
         });
         */
         
         /* Get Grafana Organisation by Name */
-        //System.out.println(gsonPretty.toJson(grafanaAPI.serverAdminAPI(serverAdminKey).getOrgByName("Test Org 1")));
+        //System.out.println(gsonPretty.toJson(grafanaAPI.serverAdminAPI(serverAdminKey).getOrgByName("NewTestOrg1")));
         
         /* Get Grafana Organisation by ID */
-        //System.out.println(gsonPretty.toJson(grafanaAPI.serverAdminAPI(serverAdminKey).getOrgByID("3")));
+        //System.out.println(gsonPretty.toJson(grafanaAPI.serverAdminAPI(serverAdminKey).getOrgByID("25")));
         
         /* Get Grafana Organisation Users by Organisation ID */
         /*
-        LinkedList<OrganisationUsersRsp> orgUsersByID = grafanaAPI.serverAdminAPI(serverAdminKey).getOrgUsersByID("3");
+        LinkedList<OrganisationUsersRsp> orgUsersByID = grafanaAPI.serverAdminAPI(serverAdminKey).getOrgUsersByID("1");
         orgUsersByID.stream().forEach((item) -> {
-            System.out.println(item.getEmail());
+            System.out.println(gsonPretty.toJson(item));
         });
         */
         
         /* Create new Grafana Organisation*/
         /*
         CreateUpdateOrgTpl newOrg = new CreateUpdateOrgTpl();
-        newOrg.setName("Another Test org2");
+        newOrg.setName("Another Test Org3");
         try{    
-            System.out.println(grafanaAPI.serverAdminAPI(serverAdminKey).createOrg(newOrg).getMessage());
+            System.out.println(gsonPretty.toJson(grafanaAPI.serverAdminAPI(serverAdminKey).createOrg(newOrg)));
         }catch(NullPointerException ex){
             Logger.getLogger(TestingAndExample.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -91,59 +93,60 @@ public class TestingAndExample {
         /*
         LinkedList<UserRsp> users = grafanaAPI.serverAdminAPI(serverAdminKey).getUsers();
         users.stream().forEach((item) -> {
-            System.out.println(item.getId());
+            System.out.println(gsonPretty.toJson(item));
         });
         */
         
         /* Get Grafana User by ID */
-        //System.out.println(grafanaAPI.serverAdminAPI(serverAdminKey).getUserByID("2").getLogin());
+        //System.out.println(gsonPretty.toJson(grafanaAPI.serverAdminAPI(serverAdminKey).getUserByID("2")));
         
         /* Get Grafana Organistations of User by ID */
         /*
         LinkedList<UserOrgsRsp> userOrgsByID = grafanaAPI.serverAdminAPI(serverAdminKey).getUserOrgsByID("1");
         userOrgsByID.stream().forEach((item) -> {
-        System.out.println(item.getName());
+            System.out.println(gsonPretty.toJson(item));
         });
         */
         
         /* Get Grafana User by Login or Emai*/
-        //System.out.println(grafanaAPI.serverAdminAPI(serverAdminKey).getUserByLoginOrEmail("abc"));
+        //System.out.println(gsonPretty.toJson(grafanaAPI.serverAdminAPI(serverAdminKey).getUserByLoginOrEmail("admin")));
         
         /* Create Grafana User*/
         /*
         CreateUserTpl newUser = new CreateUserTpl();
-        newUser.setEmail("grafanaAPI@test.com");
+        newUser.setEmail("grafanaAPI@test1234.com");
         newUser.setLogin("test");
         newUser.setName("Test User");
         newUser.setPassword("TestTestTest");
-        NewUser createUser;
-        System.out.println(gson.toJson(newUser));
-        createUser = grafanaAPI.serverAdminAPI(serverAdminKey).createUser(newUser);
+        System.out.println(gsonPretty.toJson(newUser));
+        NewUserRsp createUser1 = grafanaAPI.serverAdminAPI(serverAdminKey).createUser(newUser);
         
         try{
-            System.out.println(grafanaAPI.serverAdminAPI(serverAdminKey).createUser(newUser).getMessage());
+            System.out.println(gsonPretty.toJson(grafanaAPI.serverAdminAPI(serverAdminKey).createUser(newUser)));
         }catch(NullPointerException ex){
             Logger.getLogger(TestingAndExample.class.getName()).log(Level.SEVERE, null, ex);
         }
-         */
+        */
         
         /* Get Home Dashboard of current API Key Context*/
-        //System.out.println(grafanaAPI.orgAdminAPI(mainOrgApiKey).getDashboardHome().getDashboard().getTitle());
+        //System.out.println(gsonPretty.toJson(grafanaAPI.orgAdminAPI(mainOrgApiKey).getDashboardHome()));
         
         /* Get Dashboard by ID of current API Key Context*/
-        //System.out.println(grafanaAPI.orgAdminAPI(mainOrgApiKey).getDashboardByUid("WKdonwFmk").getDashboard().getTitle());
+        //System.out.println(gsonPretty.toJson(grafanaAPI.orgAdminAPI(mainOrgApiKey).getDashboardByUid("fSIYerFiz")));
         
         /* Get all Dashboard Tags of current API Key Context*/
         /*
         grafanaAPI.orgAdminAPI(mainOrgApiKey).getDashboardTags().stream().forEach((DashboardTagRsp item) -> {
-            System.out.println("Tags: " + item.getTerm());
+            System.out.println("Tags:");
+            System.out.println(gsonPretty.toJson(item));
         });
         */
         
         /* Get Users of current API Key Context*/
         /*
         grafanaAPI.orgAdminAPI(mainOrgApiKey).getCurrOrgUsers().stream().forEach((OrganisationUsersRsp item) -> {
-            System.out.println("OrgUsers: " + item.getLogin());
+            System.out.println("OrgUsers:");
+            System.out.println(gsonPretty.toJson(item));
         });
         */
         
@@ -260,9 +263,10 @@ public class TestingAndExample {
         /* Create Grafana Search of current Organisation*/
         /*
         FolderDashboardTpl folderDashSearch = new FolderDashboardTpl();
-        List<String> tags = new ArrayList<String>();
-        tags.add("RawDR");
+        List<String> tags = new ArrayList<>();
+        tags.add("");
         folderDashSearch.setTags(tags);
+        folderDashSearch.setQuery("abc");
         grafanaAPI.orgAdminAPI(mainOrgApiKey).searchFolderDashboard(folderDashSearch).stream().forEach((SearchFolderDashboardRsp item) -> {
             System.out.println(gson.toJson(item));
         });

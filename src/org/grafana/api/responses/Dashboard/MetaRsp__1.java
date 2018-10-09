@@ -4,6 +4,10 @@ package org.grafana.api.responses.Dashboard;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ *
+ * @author jh
+ */
 public class MetaRsp__1 {
 
     @SerializedName("isHome")
@@ -28,30 +32,58 @@ public class MetaRsp__1 {
     @Expose
     private String created;
 
+    /**
+     *
+     * @return
+     */
     public Boolean getIsHome() {
         return isHome;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getCanSave() {
         return canSave;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getCanEdit() {
         return canEdit;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getCanStar() {
         return canStar;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUrl() {
         return url;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getExpires() {
         return expires;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCreated() {
         return created;
     }

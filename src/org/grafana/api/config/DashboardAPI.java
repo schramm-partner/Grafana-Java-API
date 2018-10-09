@@ -4,6 +4,10 @@ package org.grafana.api.config;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ *
+ * @author jh
+ */
 public class DashboardAPI {
 
     @SerializedName("Version")
@@ -17,49 +21,81 @@ public class DashboardAPI {
     private String link;
     @SerializedName("DashboardByUid")
     @Expose
-    private DashboardByUid dashboardByUid;
+    private RequestParam dashboardByUid;
     @SerializedName("DashboardHome")
     @Expose
-    private DashboardHome dashboardHome;
+    private RequestParam dashboardHome;
     @SerializedName("DashboardTags")
     @Expose
-    private DashboardTags dashboardTags;
+    private RequestParam dashboardTags;
     @SerializedName("CreateUpdateDashboard")
     @Expose
-    private CreateUpdateDashboard createUpdateDashboard;
+    private RequestParam createUpdateDashboard;
     @SerializedName("DeleteDashboardByUid")
     @Expose
-    private DeleteDashboardByUid deleteDashboardByUid;
+    private RequestParam deleteDashboardByUid;
 
+    /**
+     *
+     * @return
+     */
     public String getVersion() {
         return version;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAuthentication() {
         return authentication;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getLink() {
         return link;
     }
 
-    public DashboardByUid getDashboardByUid() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getDashboardByUid() {
         return dashboardByUid;
     }
 
-    public DashboardHome getDashboardHome() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getDashboardHome() {
         return dashboardHome;
     }
 
-    public DashboardTags getDashboardTags() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getDashboardTags() {
         return dashboardTags;
     }
 
-    public CreateUpdateDashboard getCreateUpdateDashboard() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getCreateUpdateDashboard() {
         return createUpdateDashboard;
     }
 
-    public DeleteDashboardByUid getDeleteDashboardByUid() {
+    /**
+     *
+     * @return
+     */
+    public RequestParam getDeleteDashboardByUid() {
         return deleteDashboardByUid;
     }
 
